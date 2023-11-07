@@ -19,9 +19,7 @@ public class IndexLector {
     private static Lectura leer = new Lectura();
     private static LectorDao daoimpl = new LectorDaoImpl();
     public static void agregar(){
-        System.out.println("");
-        System.out.println("=Agregar Datos=");
-        System.out.println("");
+        System.out.println("\n=Agregar Datos=\n");
         System.out.print("Nombre: ");
         String nombre=leer.cadena();
         System.out.print("Apellido: ");
@@ -35,9 +33,7 @@ public class IndexLector {
         
     }
     public static void editar(){
-        System.out.println("");
-        System.out.println("=Editar Datos=");
-        System.out.println("");
+        System.out.println("\n=Editar Datos=\n");
         listar();
         System.out.print("Seleccione la ID: ");
         int id = leer.entero();
@@ -54,20 +50,16 @@ public class IndexLector {
     }
             
     public static void eliminar(){
-        System.out.println("");
-        System.out.println("=Eliminar Datos=");
-        System.out.println("");
+        System.out.println("\n=Eliminar Datos=\n");
         listar();
         System.out.print("Seleccione la ID: ");
-        int id = leer.entero();
-        daoimpl.eliminar(id);
+        daoimpl.eliminar(leer.entero());
         
     }
     public static void listar(){
         LectorDaoImpl daoimpl = new LectorDaoImpl();
         List<Lector> lectors = daoimpl.listarlector();
-        System.out.println("");
-        System.out.println("=Listado de Datos=");
+        System.out.println("\n=Listado de Datos=\n");
         for (Lector lector : lectors) {
             System.out.println(lector.getIdlector()+"\t"
                             +  lector.getNombreCompleto()+"\t"
@@ -77,14 +69,13 @@ public class IndexLector {
         
     }
     public static void menu(){
-        System.out.println("");
-        System.out.println("=MENU LECTORES=");
-        System.out.println("1.Agregar");
-        System.out.println("2.Editar");
-        System.out.println("3.Eliminar");
-        System.out.println("4.Listar");
-        System.out.println("5.Volver");
-        System.out.println("6.Salir");
+        System.out.println("\n=MENU LECTORES=\n");
+        System.out.println("1. Agregar");
+        System.out.println("2. Editar");
+        System.out.println("3. Eliminar");
+        System.out.println("4. Listar");
+        System.out.println("5. Volver");
+        System.out.println("6. Salir");
         System.out.print("Elija una Opcion: ");
         
     }

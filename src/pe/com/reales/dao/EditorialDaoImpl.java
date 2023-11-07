@@ -7,9 +7,10 @@ package pe.com.reales.dao;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-import pe.com.reales.config.bd.ConectaBD;
+import pe.com.reales.config.bd.DatabaseConnection;
 import pe.com.reales.modelo.Editorial;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -19,9 +20,7 @@ import java.util.ArrayList;
  * @author david
  */
 public class EditorialDaoImpl implements EditorialDao {
-    ConectaBD db = new ConectaBD();
     Editorial e = new Editorial();
-    Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
 
@@ -30,8 +29,8 @@ public class EditorialDaoImpl implements EditorialDao {
         List<Editorial> editorials = new ArrayList<>();
         String sql = " SELECT * FROM EDITORIAL ORDER BY NOMBRE;";
         try {
-            connection = db.getConnection();
-            statement = connection.createStatement();
+            Connection connection = DatabaseConnection.getConnection();
+            Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 Editorial editorial = new Editorial();
@@ -55,7 +54,7 @@ public class EditorialDaoImpl implements EditorialDao {
                 VALUES(?, ?, ?, ?)
                 """;
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, editorial.getNombre());
             preparedStatement.setString(2, editorial.getTelefono());
@@ -83,7 +82,7 @@ public class EditorialDaoImpl implements EditorialDao {
                 IDEDITORIAL = ?
                 """;
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, editorial.getNombre());
             preparedStatement.setString(2, editorial.getTelefono());
@@ -107,7 +106,7 @@ public class EditorialDaoImpl implements EditorialDao {
                 IDEDITORIAL = ?
                 """;
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, ideditorial);
             preparedStatement.executeUpdate();

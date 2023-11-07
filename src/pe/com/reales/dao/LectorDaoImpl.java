@@ -1,27 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.com.reales.dao;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 
-import pe.com.reales.config.bd.ConectaBD;
+import pe.com.reales.config.bd.DatabaseConnection;
 import pe.com.reales.modelo.Lector;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- * @author david
- */
 public class LectorDaoImpl implements LectorDao {
-    ConectaBD db = new ConectaBD();
     Lector l = new Lector();
-    Connection connection = null;
     Statement statement = null;
     ResultSet resultSet = null;
 
@@ -30,7 +22,7 @@ public class LectorDaoImpl implements LectorDao {
         List<Lector> lectors = new ArrayList<>();
         String sql = "SELECT * FROM LECTOR ORDER BY APELLIDO;";
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
@@ -52,7 +44,7 @@ public class LectorDaoImpl implements LectorDao {
     public boolean agregar(Lector lector) {
         String sql = "INSERT INTO LECTOR(NOMBRE, APELLIDO, DNI, EDAD) VALUES(?, ?, ?, ?)";
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, lector.getNombre());
             preparedStatement.setString(2, lector.getApellido());
@@ -78,7 +70,7 @@ public class LectorDaoImpl implements LectorDao {
                 WHERE IDLECTOR = ?;
                 """;
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, lector.getNombre());
             preparedStatement.setString(2, lector.getApellido());
@@ -101,7 +93,7 @@ public class LectorDaoImpl implements LectorDao {
                 DELETE FROM LECTOR WHERE IDLECTOR  = ?;
                 """;
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idlector);
             preparedStatement.executeUpdate();

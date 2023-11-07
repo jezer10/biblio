@@ -17,6 +17,6 @@ public class Utilitarios {
     }
     public static void volver(){
         System.out.println("\nVolviendo...\n");
-        Index.inicioprincipal();
+        Index.mostrarInicio();
     }
 }

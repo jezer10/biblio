@@ -1,23 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.com.reales.dao;
 
 import java.sql.PreparedStatement;
 import java.util.List;
-import pe.com.reales.config.bd.ConectaBD;
+import pe.com.reales.config.bd.DatabaseConnection;
 import pe.com.reales.modelo.Texto;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-/**
- *
- * @author david
- */
+
+
 public class TextoDaoImpl implements TextoDao{
-    ConectaBD db = new ConectaBD();
     Texto t = new Texto();
     Connection connection = null;
     Statement statement = null;
@@ -29,7 +22,7 @@ public class TextoDaoImpl implements TextoDao{
         String sql = "SELECT * FROM TEXTO ORDER BY NOMBRE;";
 
         try {
-            connection=db.getConnection();
+            Connection connection=DatabaseConnection.getConnection();
             statement=connection.createStatement();
             resultSet=statement.executeQuery(sql);
             while(resultSet.next()){
@@ -54,7 +47,7 @@ public class TextoDaoImpl implements TextoDao{
                 INSERT INTO TEXTO(NOMBRE, AUTOR, STOCK, PRECIO) VALUES(?, ?, ?, ?);
                 """;
         try {
-            connection = db.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, texto.getNombre());
             preparedStatement.setString(2, texto.getAutor());
@@ -81,7 +74,7 @@ public class TextoDaoImpl implements TextoDao{
                 WHERE IDTEXTO = ?;
                 """;
         try {
-            connection=db.getConnection();
+            Connection connection=DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, texto.getNombre());
             preparedStatement.setString(2, texto.getAutor());
@@ -104,7 +97,7 @@ public class TextoDaoImpl implements TextoDao{
                 DELETE FROM TEXTO WHERE IDTEXTO  = ?;
                 """;
         try {
-            connection=db.getConnection();
+            Connection connection=DatabaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idtexto);
             preparedStatement.executeUpdate();

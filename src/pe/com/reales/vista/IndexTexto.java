@@ -19,15 +19,13 @@ public class IndexTexto {
     private static Lectura leer=new Lectura();
     private static TextoDao daoimpl = new TextoDaoImpl();
     public static void agregar(){
-        System.out.println("");
-        System.out.println("=Agregar Datos=");
-        System.out.println("");
+        System.out.println("\n=Agregar Datos=\n");
         System.out.print("Nombre: ");
         String nombre=leer.cadena();
         System.out.print("Autor: ");
         String autor=leer.cadena();
         System.out.print("Stock: ");
-        String stock=leer.cadena();
+        int stock=leer.entero();
         System.out.print("Precio: ");
         int precio=leer.entero();
         Texto texto = new Texto(0, nombre, autor, stock, precio);
@@ -35,9 +33,7 @@ public class IndexTexto {
 
     }
     public static void editar(){
-        System.out.println("");
-        System.out.println("=Editar Datos=");
-        System.out.println("");
+        System.out.println("\n=Editar Datos=\n");
         listar();
         System.out.print("Seleccione la ID: ");
         int id=leer.entero();
@@ -46,28 +42,22 @@ public class IndexTexto {
         System.out.print("Nuevo Autor: ");
         String autor=leer.cadena();
         System.out.print("Nuevo Stock: ");
-        String stock=leer.cadena();
+        int stock=leer.entero();
         System.out.print("Nuevo Precio: ");
         int precio=leer.entero();
         Texto texto = new Texto(id, nombre, autor, stock, precio);
         daoimpl.editar(texto);
     }
     public static void eliminar(){
-        System.out.println("");
-        System.out.println("=Eliminar Datos=");
-        System.out.println("");
+        System.out.println("\n=Eliminar Datos=\n");
         listar();
         System.out.print("Seleccione la ID: ");
-        int id=leer.entero();
-        daoimpl.eliminar(id);
-                
-        
+        daoimpl.eliminar(leer.entero());
     }
     public static void listar(){
-        TextoDaoImpl daoimpl=new TextoDaoImpl();
+        TextoDaoImpl daoimpl = new TextoDaoImpl();
         List<Texto> textos = daoimpl.listartexto();
-        System.out.println("");
-        System.out.println("=Listado de Datos=");
+        System.out.println("\n=Listado de Datos=\n");
         for (Texto texto : textos) {
             System.out.println(texto.getIdtexto()+"\t"
                              + texto.getNombre()+"\t"
