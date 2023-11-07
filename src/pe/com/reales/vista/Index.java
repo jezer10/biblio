@@ -51,7 +51,6 @@ public class Index {
     }
     public static void mostrarInicio(){
         int conteoTablas = CrearTablas.countTables();
-        System.out.println(conteoTablas);
         if(conteoTablas<3){
             inicioMenuCreacion();
         } else {

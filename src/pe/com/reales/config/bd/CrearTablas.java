@@ -19,6 +19,7 @@ public class CrearTablas {
                     System.out.println("Tabla eliminada: " + tableName);
                 }
             }
+            statement.close();
         } catch (SQLException e) {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
         }
@@ -36,7 +37,9 @@ public class CrearTablas {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             resultSet.next();
-            return resultSet.getInt("count");
+            int count = resultSet.getInt("count");
+            resultSet.close();
+            return count;
         } catch (Exception e) {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
             return 0;
@@ -76,7 +79,6 @@ public class CrearTablas {
                             """;
             statement.executeUpdate(sql);
             statement.close();
-            connection.close();
             dataInsertion();
         } catch (Exception e) {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
