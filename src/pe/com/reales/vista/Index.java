@@ -8,7 +8,7 @@ import pe.com.reales.utils.Utilitarios;
 public class Index {
     private static Lectura leer = new Lectura();
     public static void menuPrincipal(){
-        System.out.println("= MENU PRINCIPAL =");
+        System.out.println("\n=MENU PRINCIPAL=\n");
         System.out.println("1. Editorial");
         System.out.println("2. Lector");
         System.out.println("3. Texto");

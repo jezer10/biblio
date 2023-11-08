@@ -62,27 +62,26 @@ public class IndexEditorial {
         
     }
     public static void listar(){
+        StringBuilder output = new StringBuilder();
         EditorialDaoImpl daoimpl=new EditorialDaoImpl();
         List<Editorial> editorials = daoimpl.listareditorial();
-        System.out.println("=Listado de Datos=");
+        System.out.println();
+        output.append("\n=Listado de Datos LECTOR=\n");
+        output.append("\nID\tNOMBRE\tTELEFONO\tRUC\tESTADO");
         for (Editorial editorial : editorials) {
-            System.out.println(editorial.getIdeditorial()+"\t"
-                          +    editorial.getNombre()+"\t"
-                          +    editorial.getTelefono()+"\t"
-                          +    editorial.getEstado()+"\t"
-                          +    editorial.getRuc());
-            
+            output.append("\n%d\t%s\t%s\t%s\t%s".formatted(editorial.getIdeditorial(), editorial.getNombre(), editorial.getTelefono(), editorial.getRuc(), editorial.getEstado()));
+
         }
+        System.out.print(output);
     }
     public static void menu(){
-        System.out.println("");
-        System.out.println("=MENU EDITORIALES=");
-        System.out.println("1.Agregar");
-        System.out.println("2.Editar");
-        System.out.println("3.Eliminar");
-        System.out.println("4.Listar");
-        System.out.println("5.Volver");
-        System.out.println("6.Salir");
+        System.out.println("\n=MENU EDITORIALES=\n");
+        System.out.println("1. Agregar");
+        System.out.println("2. Editar");
+        System.out.println("3. Eliminar");
+        System.out.println("4. Listar");
+        System.out.println("5. Volver");
+        System.out.println("6. Salir");
         System.out.print("Elija una Opcion: ");
         
     }
